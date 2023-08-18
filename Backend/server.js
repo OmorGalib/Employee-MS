@@ -103,7 +103,13 @@ app.get('/employeeCount', (req, res) => {
     })
 })
 
-
+app.get('/salary', (req, res) => {
+    const sql = "Select sum(salary) as sumOfSalary from employee";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Error: "Error in runnig query"});
+        return res.json(result);
+    })
+})
 
 
 app.get('/getEmployee', (req, res) => {
