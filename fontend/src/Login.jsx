@@ -10,6 +10,7 @@ function Login() {
         password: ''
     })
     const navigate = useNavigate();
+    axios.defaults.withCredentials = true;
     const [error, setError] = useState('');
 
     const handleSubmit = (event) => {
