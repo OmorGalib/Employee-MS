@@ -87,6 +87,17 @@ app.get('/dashboard', verifyUser, (req, res) => {
     return res.json({ Status: "Success" })
 })
 
+
+app.get('/adminCount', (req, res) => {
+    const sql = "Select count(id) as admin from users";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Error: "Error in runnig query"});
+        return res.json(result);
+    })
+})
+
+
+
 app.get('/getEmployee', (req, res) => {
     const sql = "SELECT * FROM employee";
     con.query(sql, (err, result) => {

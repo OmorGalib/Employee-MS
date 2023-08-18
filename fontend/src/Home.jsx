@@ -1,6 +1,18 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 function Home() {
+  const [adminCount, setAdminCount] = useState()
+  
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/adminCount')
+		.then(res => {
+			setAdminCount(res.data[0].admin)
+		}).catch(err => console.log(err));
+
+
+  } , [])
   return (
     <div>
       <div className='p-3 d-flex justify-content-around mt-3'>
@@ -10,7 +22,7 @@ function Home() {
           </div>
           <hr />
           <div className=''>
-            <h5>Total: { }</h5>
+            <h5>Total: {adminCount}</h5>
           </div>
         </div>
         <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
@@ -44,7 +56,10 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            
+            <tr>
+              <td>Admin</td>
+              <td>Admin</td>
+            </tr>
           </tbody>
         </table>
       </div>
