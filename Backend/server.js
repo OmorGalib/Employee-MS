@@ -95,6 +95,14 @@ app.get('/adminCount', (req, res) => {
         return res.json(result);
     })
 })
+app.get('/employeeCount', (req, res) => {
+    const sql = "Select count(id) as employee from employee";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Error: "Error in runnig query"});
+        return res.json(result);
+    })
+})
+
 
 
 

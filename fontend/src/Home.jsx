@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 function Home() {
   const [adminCount, setAdminCount] = useState()
+  const [employeeCount, setEmployeeCount] = useState()
   
 
   useEffect(() => {
@@ -11,6 +12,12 @@ function Home() {
 			setAdminCount(res.data[0].admin)
 		}).catch(err => console.log(err));
 
+    axios.get('http://localhost:8081/employeeCount')
+		.then(res => {
+			setEmployeeCount(res.data[0].employee)
+		}).catch(err => console.log(err));
+
+    
 
   } , [])
   return (
@@ -31,7 +38,7 @@ function Home() {
           </div>
           <hr />
           <div className=''>
-            <h5>Total: { }</h5>
+            <h5>Total: {employeeCount}</h5>
           </div>
         </div>
         <div className='px-3 pt-2 pb-3 border shadow-sm w-25'>
