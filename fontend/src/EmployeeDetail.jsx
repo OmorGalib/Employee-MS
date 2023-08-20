@@ -19,16 +19,18 @@ function EmployeeDetail() {
 	}
   return (
     <div>
-        <div className='d-flex justify-content-center flex-column align-items-center mt-3'>
-            <img src={`http://localhost:8081/images/`+employee.image} alt="" className='empImg'/>
-            <div className='d-flex align-items-center flex-column mt-5'>
-                <h3>Name: {employee.name}</h3>
-                <h3>Email: {employee.email}</h3>
-                <h3>Salary: {employee.salary}</h3>
-            </div>
-            <div>
-                <button className='btn btn-primary me-2'>Edit</button>
-                <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
+        <div className='d-flex justify-content-around m-3 p-3'>
+            <img src={`http://localhost:8081/images/`+employee.image} alt="" className='empImg h-25 w-25 rounded-circle'/>
+            <div className='mt-5 pt-5'>
+                <div className='d-flex align-items-center flex-column mt-5'>
+                    <h3>Name: {employee.name}</h3>
+                    <h3>Email: {employee.email}</h3>
+                    <h3>Salary: {employee.salary}</h3>
+                </div>
+                <div className='d-flex justify-content-around m-3' >
+                    <button className='btn btn-success me-2'>Edit</button>
+                    <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
+                </div>
             </div>
         </div>
     </div>
