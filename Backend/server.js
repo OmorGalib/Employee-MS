@@ -44,6 +44,14 @@ con.connect(function (err) {
     }
 })
 
+app.get('/getEmployee', (req, res) => {
+    const sql = "SELECT * FROM employee";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Error: "Get employee error in sql"});
+        return res.json({Status: "Success", Result: result})
+    })
+}) 
+
 app.get('/get/:id', (req, res) => {
     const id = req.params.id;
     const sql = "SELECT * FROM employee where id = ?";
@@ -78,13 +86,15 @@ const verifyUser = (req, res, next) => {
     } else {
         jwt.verify(token, "jwt-secret-key", (err, decoded) => {
             if (err) return res.json({ Error: "Token wrong" });
+            req.role = decoded.role;
+            req.id = decoded.id;
             next();
         })
     }
 }
 
 app.get('/dashboard', verifyUser, (req, res) => {
-    return res.json({ Status: "Success" })
+    return res.json({ Status: "Success",role: req.role, id: req.id })
 })
 
 
@@ -126,7 +136,7 @@ app.post('/login', (req, res) => {
         if (err) return res.json({ Status: "Error", Error: "Error in runnig query" });
         if (result.length > 0) {
             const id = result[0].id;
-            const token = jwt.sign({ id }, "jwt-secret-key", { expiresIn: '1d' });
+            const token = jwt.sign({role: "admin"}, "jwt-secret-key", { expiresIn: '1d' });
             res.cookie('token', token);
             return res.json({ Status: "Success" })
         } else {

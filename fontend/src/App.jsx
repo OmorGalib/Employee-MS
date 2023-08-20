@@ -9,6 +9,7 @@ import AddEmployee from './AddEmployee'
 import EditEmployee from './EditEmployee'
 import Start from './Start'
 import EmployeeDetail from './EmployeeDetail'
+import EmployeeLogin from './EmployeeLogin'
 
 function App() {
   
@@ -24,7 +25,8 @@ function App() {
       </Route>
       <Route path='/login' element={<Login />}></Route>
       <Route path='/start' element={<Start />}></Route>
-      <Route path='/employeeDetail' element={<EmployeeDetail />}></Route>
+      <Route path='/employeeLogin' element={<EmployeeLogin />}></Route>
+      <Route path='/employeeDetail/:id' element={<EmployeeDetail />}></Route>
     </Routes>
     </BrowserRouter>
   )

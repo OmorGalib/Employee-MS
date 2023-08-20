@@ -11,6 +11,12 @@ function Dashboard() {
         axios.get('http://localhost:8081/dashboard')
 		.then(res =>{
 			if(res.data.Status === "Success"){
+				if(res.data.role === "admin"){
+					navigate('/');
+				}else{
+					const id = res.data.id;
+					navigate('/employeeDetail'+id)
+				}
 
 			}else{
 				navigate('/start')
