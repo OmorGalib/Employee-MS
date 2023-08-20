@@ -7,6 +7,8 @@ import Profile from './Profile'
 import Home from './Home'
 import AddEmployee from './AddEmployee'
 import EditEmployee from './EditEmployee'
+import Start from './Start'
+import EmployeeDetail from './EmployeeDetail'
 
 function App() {
   
@@ -21,6 +23,8 @@ function App() {
         <Route path='/employeeEdit/:id' element={<EditEmployee />}></Route>
       </Route>
       <Route path='/login' element={<Login />}></Route>
+      <Route path='/start' element={<Start />}></Route>
+      <Route path='/employeeDetail' element={<EmployeeDetail />}></Route>
     </Routes>
     </BrowserRouter>
   )
