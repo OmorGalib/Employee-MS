@@ -14,6 +14,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const con = mysql.createConnection({
@@ -191,6 +192,22 @@ app.post('/create', upload.single('image'), (req, res) => {
         })
     })
 })
+
+app.post('/apply', (req, res) => {
+    const sql = "INSERT INTO leaves (`name`,`email`,`start_date`, `end_date`, `reason`) VALUES (?, ?, ?, ?, ?)";
+        const values = [
+            req.body.name,
+            req.body.email,
+            req.body.start_date,
+            req.body.end_date,
+            req.body.reason,
+        ]
+        con.query(sql, values, (err, result) => {
+            if (err) return res.json({ Error: "Inside leaves query" });
+            return res.json({ Status: "Success" });
+    })
+})
+
 app.listen(8081, () => {
     console.log("Running");
 })
